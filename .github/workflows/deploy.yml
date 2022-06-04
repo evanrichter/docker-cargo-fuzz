@@ -1,0 +1,24 @@
+name: Publish Docker Image
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * FRI' # run on Fridays at 2am
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v1
+
+      - name: Login to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/evanrichter/cargo-fuzz:latest
+
