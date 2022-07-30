@@ -5,6 +5,7 @@ on:
     branches: [ main ]
   schedule:
     - cron: '0 2 * * FRI' # run on Fridays at 2am
+  workflow_dispatch:
 
 jobs:
   Deploy:
