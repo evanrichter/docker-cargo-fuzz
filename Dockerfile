@@ -5,5 +5,5 @@ run apt update && apt upgrade -y && \
     ln -s /usr/bin/llvm-config-11 /usr/bin/llvm-config
 
 run rustup component add rust-src
-run cargo install -f --git https://github.com/evanrichter/cargo-fuzz
+run cargo install -f cargo-fuzz
 run cargo install -f afl
